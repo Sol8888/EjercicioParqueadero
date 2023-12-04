@@ -326,18 +326,23 @@ public class Parqueadero {
      * M�todo de extensi�n 1.
      * @return Respuesta 1.
      */
-    public String metodo1( )
-    {
-        return "respuesta 1";
+    public String metodo1() {
+        int cantidadCarrosPB = contarCarrosQueComienzanConPlacaPB();
+        boolean hayCarroCon24Horas = hayCarroCon24Horas();
+
+        String mensaje = "Cantidad de carros con placa PB: " + cantidadCarrosPB + " – Hay carro parqueado por 24 o más horas: ";
+        mensaje += hayCarroCon24Horas ? "Sí." : "No.";
+
+        return mensaje;
     }
 
     /**
      * M�todo de extensi�n 2.
      * @return Respuesta 2.
      */
-    public String metodo2( )
-    {
-        return "respuesta 2";
+    public String metodo2() {
+        int carrosSacados = desocuparParqueadero();
+        return "Cantidad de carros sacados: " + carrosSacados + ".";
     }
 
     /**
@@ -434,5 +439,44 @@ public class Parqueadero {
         }
         return false;
     }
+
+    public int contarCarrosQueComienzanConPlacaPB() {
+        int contador = 0;
+
+        for (Puesto puesto : puestos) {
+            if (puesto.estaOcupado()) {
+                Carro carro = puesto.darCarro();
+                if (carro.darPlaca().toUpperCase().startsWith("PB")) {
+                    contador++;
+                }
+            }
+        }
+
+        return contador;
+    }
+    public boolean hayCarroCon24Horas() {
+        for (Puesto puesto : puestos) {
+            if (puesto.estaOcupado()) {
+                Carro carro = puesto.darCarro();
+                if (carro.darTiempoEnParqueadero(horaActual) >= 24) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public int desocuparParqueadero() {
+        int carrosSacados = 0;
+
+        for (Puesto puesto : puestos) {
+            if (puesto.estaOcupado()) {
+                puesto.sacarCarro();
+                carrosSacados++;
+            }
+        }
+
+        return carrosSacados;
+    }
+
 
 }

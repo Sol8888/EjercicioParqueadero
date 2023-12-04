@@ -43,6 +43,21 @@ public class EjercicioParqueadero {
                 case 10:
                     mostrarHayCarrosPlacaIgual(parqueadero);
                     break;
+                case 11:
+                    mostrarContarCarrosPlacaPB(parqueadero);
+                    break;
+                case 12:
+                    mostrarHayCarroCon24Horas(parqueadero);
+                    break;
+                case 13:
+                    mostrarMetodo1(parqueadero);
+                    break;
+                case 14:
+                    mostrarDesocuparParqueadero(parqueadero);
+                    break;
+                case 15:
+                    mostrarMetodo2(parqueadero);
+                    break;
                 case 0:
                     System.out.println("Saliendo de la aplicación.");
                     break;
@@ -65,6 +80,11 @@ public class EjercicioParqueadero {
         System.out.println("8. Mostrar que carro ha estado paqueado mas de ocho horas");
         System.out.println("9. Indicar si algun carro a estado parqueado mas de tres horas");
         System.out.println("10. Mostrar si hay carros con placas iguales");
+        System.out.println("11. Mostrar los carros con la placa que incia en PB");
+        System.out.println("12. Mostrar si hay carros parqueados por 24 horas");
+        System.out.println("13. Mostrar el metodo 1");
+        System.out.println("14. Desocupar un espacio de parqueo");
+        System.out.println("15. Mostrar metodo 2");
         System.out.println("0. Salir");
         System.out.print("Seleccione una opción: ");
     }
@@ -151,5 +171,35 @@ public class EjercicioParqueadero {
             System.out.println("No hay carros parqueados con la misma placa.");
         }
     }
+
+    private static void mostrarContarCarrosPlacaPB(Parqueadero parqueadero) {
+        int cantidadCarrosPB = parqueadero.contarCarrosQueComienzanConPlacaPB();
+        System.out.println("Cantidad de carros con placa PB: " + cantidadCarrosPB);
+    }
+
+    private static void mostrarHayCarroCon24Horas(Parqueadero parqueadero) {
+        boolean hayCarroCon24Horas = parqueadero.hayCarroCon24Horas();
+        if (hayCarroCon24Horas) {
+            System.out.println("Hay al menos un carro que ha estado parqueado por 24 o más horas.");
+        } else {
+            System.out.println("No hay carros que hayan estado parqueados por 24 o más horas.");
+        }
+    }
+
+    private static void mostrarMetodo1(Parqueadero parqueadero) {
+        String resultadoMetodo1 = parqueadero.metodo1();
+        System.out.println(resultadoMetodo1);
+    }
+
+    private static void mostrarDesocuparParqueadero(Parqueadero parqueadero) {
+        int carrosSacados = parqueadero.desocuparParqueadero();
+        System.out.println("Cantidad de carros sacados: " + carrosSacados);
+    }
+
+    private static void mostrarMetodo2(Parqueadero parqueadero) {
+        String resultadoMetodo2 = parqueadero.metodo2();
+        System.out.println(resultadoMetodo2);
+    }
+
 }
 
